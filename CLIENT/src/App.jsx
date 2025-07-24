@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
-import Loader from './components/Loader';
-import MainContent from './components/MainContent';
+import React, { useState } from "react";
+import Loader from "./components/Loader";
+import MainContent from "./components/MainContent";
+import { AnimatePresence, motion } from "framer-motion";
 
 const App = () => {
   const [showMain, setShowMain] = useState(false);
 
   return (
-    <div className="min-h-screen">
-      {!showMain ? (
-        <Loader onComplete={() => setShowMain(true)} />
-      ) : (
-        <MainContent />
-      )}
+    <div className="min-h-screen bg-black">
+      <AnimatePresence mode="wait">
+        {!showMain ? (
+          <Loader key="loader" onComplete={() => setShowMain(true)} />
+        ) : (
+          <motion.div
+            key="main"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <MainContent />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
