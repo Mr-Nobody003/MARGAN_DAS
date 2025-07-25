@@ -1,29 +1,67 @@
-// src/components/Navbar.jsx
-import React from 'react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+
+const links = [
+  { name: 'Home', href: '#hero' },
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' },
+];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-b from-blue-100 to-white backdrop-blur border-b border-gray-200 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="text-xl font-bold text-blue-600">Margan</div>
-        <nav className="hidden sm:flex gap-6 text-gray-700 font-medium">
-          <a href="#hero" className="hover:text-blue-500">Home</a>
-          <a href="#about" className="hover:text-blue-500">About</a>
-          <a href="#projects" className="hover:text-blue-500">Projects</a>
-          <a href="#skills" className="hover:text-blue-500">Skills</a>
-          <a href="#contact" className="hover:text-blue-500">Contact</a>
-        </nav>
-        <div>
-          {/* Theme switcher placeholder */}
-          <button
-            className="border rounded-full px-3 py-1 text-sm font-medium hover:bg-gray-100 transition"
-            title="Toggle Theme"
-          >
-            🌓 Theme
-          </button>
+    <motion.nav
+      className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md shadow-md border-b border-teal-600"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
+        <a href="#hero" className="text-teal-400 font-bold text-xl tracking-wide">
+          MARGAN
+        </a>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex gap-6 text-teal-300 font-medium">
+          {links.map(link => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="hover:text-white transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
         </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden text-teal-400"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? '✖' : '☰'}
+        </button>
       </div>
-    </header>
+
+      {/* Mobile Dropdown */}
+      {isOpen && (
+        <div className="md:hidden bg-black border-t border-teal-600 flex flex-col items-center py-3">
+          {links.map(link => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="py-2 text-teal-300 hover:text-white"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+      )}
+    </motion.nav>
   );
 };
 

@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="py-4 px-4 bg-white text-center text-sm sm:text-base text-gray-500">
-      © {new Date().getFullYear()} Margan Das. All rights reserved.
+    <footer className="snap-start py-6 px-4 bg-black text-center text-sm sm:text-base text-teal-600 font-mono border-t border-teal-800">
+      © {new Date().getFullYear()} <span className="text-teal-400">Margan Das</span>. All rights reserved.
     </footer>
   );
 };
