@@ -2,3 +2,26 @@
 html, body, #root {
   background-color: black;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0f; /* Dark track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #14b8a6; /* Neon teal */
+  border-radius: 6px;
+  border: 2px solid #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2dd4bf; /* Brighter teal on hover */
+}
+
+/* Firefox scrollbar (limited styling) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #14b8a6 #0f0f0f;
+}
