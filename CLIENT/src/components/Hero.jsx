@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import Spline from "@splinetool/react-spline";
 
 const Hero = () => {
@@ -61,7 +62,7 @@ const Hero = () => {
         {/* Grid Background Overlay */}
         <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(20,184,166,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(20,184,166,0.15)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-        {/* Text content (appears first on desktop, below robot on mobile) */}
+        {/* Text content */}
         <div className="relative z-10 text-center md:text-left max-w-xl mt-6 md:mt-0">
           <h1 className="text-4xl sm:text-6xl font-bold font-mono text-teal-400">
             {displayedText}
@@ -72,16 +73,28 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Robot (moves to right side on large screens) */}
+        {/* Robot */}
         <div className="w-full md:w-1/2 h-[500px] md:h-[500px] relative z-10 flex justify-center items-center">
           {!isLoaded && (
-            <div className="text-teal-400 animate-pulse">Loading Robot...</div>
+            <div className="text-teal-400 justify-center animate-pulse">
+              Loading Robot...
+            </div>
           )}
-          <Spline scene="./robot.splinecode" onLoad={() => setIsLoaded(true)} />
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isLoaded ? { opacity: 1, scale: 1.3 } : {}} // ⬅ scale > 1 makes it bigger
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="w-full h-full flex justify-center items-center"
+          >
+            <Spline
+              scene="./robot.splinecode"
+              onLoad={() => setIsLoaded(true)}
+            />
+          </motion.div>
         </div>
       </section>
 
-      {/* Invisible marker to scroll to next section */}
       <div ref={aboutRef} />
     </>
   );
