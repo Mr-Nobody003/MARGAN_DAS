@@ -8,7 +8,7 @@ import Navbar from './Navbar';
 
 const MainContent = () => {
   return (
-    <main className="font-sans h-screen overflow-y-scroll snap-y snap-mandatory">
+    <main className="font-sans h-screen overflow-y-scroll snap-y snap-mandatory relative">
       <Navbar />
       <Hero />
       <About />
