@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import SplashScreen from "./SplashScreen";
+import Spline from "@splinetool/react-spline";
 
 const Loader = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState("loading");
   const [doodles, setDoodles] = useState([]);
+  const [robotLoaded, setRobotLoaded] = useState(false);
 
   const maxTicks = 24;
   const interval = 100;
 
   const generateDoodles = () => {
     let count = 1000;
-
     if (typeof window !== "undefined") {
       const width = window.innerWidth;
       if (width < 480) count = 150;
@@ -20,7 +21,6 @@ const Loader = ({ onComplete }) => {
       else if (width < 1024) count = 500;
       else count = 1000;
     }
-
     const items = [];
     for (let i = 0; i < count; i++) {
       items.push({
@@ -35,10 +35,10 @@ const Loader = ({ onComplete }) => {
     }
     return items;
   };
+
   useEffect(() => {
-    // Initialize doodles
     setDoodles(generateDoodles());
-    // Start loading phase
+
     if (phase === "loading") {
       const timer = setInterval(() => {
         setProgress((prev) => {
@@ -49,24 +49,26 @@ const Loader = ({ onComplete }) => {
         });
       }, interval);
     }
-    //start splash phase after loading
+
     if (phase === "splash") {
-      // Find max doodle animation duration + delay
-      const maxDoodleTime = doodles.reduce((max, d) => {
-        const total =  d.duration;
-        return total > max ? total : max;
-      }, 0);
-
-      const splashDuration = (2) * 1000; // ms
-      //const splashDuration = (maxDoodleTime ) * 1000; // ms
-
+      const splashDuration = 2000; // ms
       const timeout = setTimeout(() => {
-        onComplete(); // Switch to MainContent
+        // ✅ Wait until robot is ready before going to main content
+        if (robotLoaded) onComplete();
+        else {
+          // Poll until robot finishes loading
+          const checkInterval = setInterval(() => {
+            if (robotLoaded) {
+              clearInterval(checkInterval);
+              onComplete();
+            }
+          }, 300);
+        }
       }, splashDuration);
 
       return () => clearTimeout(timeout);
     }
-  }, [phase, onComplete]);
+  }, [phase, onComplete, robotLoaded]);
 
   return (
     <motion.div
@@ -104,6 +106,11 @@ const Loader = ({ onComplete }) => {
       )}
 
       {phase === "splash" && <SplashScreen doodles={doodles} />}
+
+      {/* 🔥 Hidden Preloader for Robot */}
+      <div className="hidden">
+        <Spline scene="./robot.splinecode" onLoad={() => setRobotLoaded(true)} />
+      </div>
     </motion.div>
   );
 };
