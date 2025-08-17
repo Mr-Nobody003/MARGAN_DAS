@@ -21,10 +21,10 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
-        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-gloss" />
+        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-gloss -z-10" />
 
         {/* Left section: Pac-Man + Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 font-family-mozilla-headline">
           {/* Pac-Man on extreme left */}
           <PacmanLoader size={18} color="#5df2f2" speedMultiplier={1.3} />
 
@@ -43,7 +43,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="hover:bg-red-400 hover:border-red-400 hover:text-white transition-colors border border-teal-300 rounded-xl px-2"
+              className="hover:bg-red-400 hover:border-red-400 hover:text-white transition-colors border-2 border-teal-300 rounded-xl px-2"
             >
               {link.name}
             </a>

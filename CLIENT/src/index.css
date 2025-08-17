@@ -1,10 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap");
 @import "tailwindcss";
 html,
-body,
+body, * {
+  cursor: none !important;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+}
+
 #root {
   background-color: black;
 }
+
 @theme {
   --font-family-mozilla-headline: "Mozilla Headline", sans-serif;
 }

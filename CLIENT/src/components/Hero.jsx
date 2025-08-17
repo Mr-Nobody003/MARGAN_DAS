@@ -79,7 +79,7 @@ const Hero = () => {
             {displayedText}
             <span className="animate-pulse text-red-400">|</span>
           </h1>
-          <h2 className="mt-4 text-lg sm:text-3xl text-teal-300">
+          <h2 className="mt-4 font-family-mozilla-headline text-lg sm:text-3xl text-teal-300">
             Full Stack Developer building{" "}
           </h2>
           <span className="text-4xl sm:text-6xl font-family-mozilla-headline  text-red-400 ">
