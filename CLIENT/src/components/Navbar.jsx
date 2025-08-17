@@ -14,14 +14,19 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md shadow-md border-b border-teal-600"
+      className="fixed w-full top-0 z-50 bg-black/30 backdrop-blur-md shadow-md border-b border-teal-600 hover:border-red-400 transition-colors"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
-        <a href="#hero" className="text-teal-400 font-bold text-xl tracking-wide">
-          MARGAN
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between ">
+        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-gloss" />
+        {/* Logo with Gloss Effect */}
+        <a
+          href="#hero"
+          className="relative inline-block text-teal-400 font-bold text-xl tracking-wide overflow-hidden"
+        >
+          <span className="relative z-10">MARGAN </span>
         </a>
 
         {/* Desktop Links */}
@@ -30,7 +35,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="hover:text-white transition-colors"
+              className="hover:bg-red-400 hover:border-red-400 hover:text-white transition-colors border border-teal-300 rounded-xl pl-2 pr-2"
             >
               {link.name}
             </a>

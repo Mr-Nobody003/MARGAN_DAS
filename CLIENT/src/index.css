@@ -1,27 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap");
 @import "tailwindcss";
-html, body, #root {
+html,
+body,
+#root {
   background-color: black;
 }
-::-webkit-scrollbar {
+@theme {
+  --font-family-mozilla-headline: "Mozilla Headline", sans-serif;
+}
+*::-webkit-scrollbar {
   width: 10px;
 }
 
-::-webkit-scrollbar-track {
-  background: #0f0f0f; /* Dark track */
+*::-webkit-scrollbar-track {
+  background: #0f0f0f;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #14b8a6; /* Neon teal */
+*::-webkit-scrollbar-thumb {
+  background-color: #14b8a6; /* teal-500 */
   border-radius: 6px;
   border: 2px solid #0f0f0f;
+  transition: background-color 0.2s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #2dd4bf; /* Brighter teal on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #f87171 !important; /* red-400 */
 }
 
-/* Firefox scrollbar (limited styling) */
+/* Firefox (no hover support) */
 * {
   scrollbar-width: thin;
   scrollbar-color: #14b8a6 #0f0f0f;
+}
+
+@keyframes gloss {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-gloss {
+  animation: gloss 7s infinite linear;
+}
+
+/* From Uiverse.io by andrew-demchenk0 */ 
+.loader-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 30px;   /* bounding box */
+  height: 30px;
+  margin-left: 50px; /* space from text */
+}
+
+.packman {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+.packman::before {
+  content: '';
+  position: absolute;
+  width: 30px;   /* larger size */
+  height: 15px;
+  background-color: rgb(93, 242, 242);
+  border-radius: 100px 100px 0 0;
+  transform: translate(-50%, -50%);
+  animation: pac-top 0.5s linear infinite;
+  transform-origin: center bottom;
+}
+
+.packman::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  background-color: rgb(93, 242, 242);
+  border-radius: 0 0 100px 100px;
+  transform: translate(-50%, 50%);
+  animation: pac-bot 0.5s linear infinite;
+  transform-origin: center top;
+}
+
+@keyframes pac-top {
+  0% { transform: translate(-50%, -50%) rotate(0); }
+  50% { transform: translate(-50%, -50%) rotate(-30deg); }
+  100% { transform: translate(-50%, -50%) rotate(0); }
+}
+
+@keyframes pac-bot {
+  0% { transform: translate(-50%, 50%) rotate(0); }
+  50% { transform: translate(-50%, 50%) rotate(30deg); }
+  100% { transform: translate(-50%, 50%) rotate(0); }
+}
+
+.dots {
+  position: absolute;
+  top: 7px;    /* align with Pac-Man mouth */
+  left: 34px;  /* right after Pac-Man */
+}
+
+.dots .dot {
+  position: absolute;
+  width: 8px;   /* bigger dots */
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.dots .dot:nth-child(1) { left: 32px; animation: dot-move 0.5s infinite; }
+.dots .dot:nth-child(2) { left: 20px; animation: dot-move 0.5s infinite; }
+.dots .dot:nth-child(3) { left: 10px; animation: dot-move 0.5s infinite; }
+.dots .dot:nth-child(4) { left: 0;    animation: dot-eat 0.5s infinite; }
+
+@keyframes dot-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-10px, 0); }
+}
+
+@keyframes dot-eat {
+  0% { transform: scale(1); }
+  5%, 100% { transform: scale(0); }
 }
