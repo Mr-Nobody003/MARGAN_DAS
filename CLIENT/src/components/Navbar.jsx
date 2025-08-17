@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 
 const links = [
   { name: 'Home', href: '#hero' },
@@ -19,15 +20,22 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
         <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-gloss" />
-        {/* Logo with Gloss Effect */}
-        <a
-          href="#hero"
-          className="relative inline-block text-teal-400 font-bold text-xl tracking-wide overflow-hidden"
-        >
-          <span className="relative z-10">MARGAN </span>
-        </a>
+
+        {/* Left section: Pac-Man + Logo */}
+        <div className="flex items-center gap-3">
+          {/* Pac-Man on extreme left */}
+          <PacmanLoader size={18} color="#5df2f2" speedMultiplier={1.3} />
+
+          {/* Logo */}
+          <a
+            href="#hero"
+            className="text-teal-400 font-bold text-xl ml-10 tracking-wide"
+          >
+            MARGAN
+          </a>
+        </div>
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-6 text-teal-300 font-medium">
@@ -35,7 +43,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="hover:bg-red-400 hover:border-red-400 hover:text-white transition-colors border border-teal-300 rounded-xl pl-2 pr-2"
+              className="hover:bg-red-400 hover:border-red-400 hover:text-white transition-colors border border-teal-300 rounded-xl px-2"
             >
               {link.name}
             </a>
