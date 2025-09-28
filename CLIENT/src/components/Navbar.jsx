@@ -40,13 +40,17 @@ const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex gap-6 text-teal-300 font-medium">
           {links.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="hover:bg-red-400 hover:border-red-400 hover:text-white transition-colors border-2 border-teal-300 rounded-xl px-2"
-            >
-              {link.name}
-            </a>
+            <div className="border-animate-smooth rounded-xl p-[2px]">
+              <div className="rounded-xl bg-neutral-900 flex items-center justify-center">
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="hover:bg-red-400 hover:border-red-400 hover:text-white transition-colors  rounded-xl px-2"
+                >
+                  {link.name}
+                </a>
+              </div>
+            </div>
           ))}
           {/* Counter on the right side */}
           <a

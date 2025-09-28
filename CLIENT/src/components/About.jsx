@@ -114,6 +114,7 @@ const About = () => {
 
   const [typedText, setTypedText] = useState("");
   const [index, setIndex] = useState(0);
+  const [isTypingDone, setIsTypingDone] = useState(false);
 
   const fullText = `I’m a passionate developer who loves turning ideas into interactive, impactful experiences. Whether it’s building real-time web apps, crafting intuitive UI designs, or training OCR models for underrepresented scripts, I enjoy solving meaningful problems through code.
 
@@ -123,18 +124,21 @@ Currently pursuing my B.Tech in Computer Science and Engineering at NIT Agartala
 
 Let’s build something awesome together 🌐`;
 
+  // Typing effect
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || isTypingDone) return;
 
     if (index < fullText.length) {
       const timeout = setTimeout(() => {
         setTypedText((prev) => prev + fullText[index]);
         setIndex((prev) => prev + 1);
-      }, 20);
+      }, 0.01);
 
       return () => clearTimeout(timeout);
+    } else {
+      setIsTypingDone(true);
     }
-  }, [isInView, index, fullText]);
+  }, [isInView, index, fullText, isTypingDone]);
 
   return (
     <section
@@ -144,17 +148,14 @@ Let’s build something awesome together 🌐`;
     >
       {/* Grid Background Overlay */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(20,184,166,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(20,184,166,0.15)_1px,transparent_1px)] bg-[size:40px_40px]" />
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-teal-900 via-black to-red-900 opacity-40 " />
-      {/* Retro CRT Overlays */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-teal-900 via-black to-red-900 opacity-40" />
       <div className="absolute inset-0 z-0 pointer-events-none mix-blend-overlay opacity-[0.08] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[size:100%_3px]" />
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(0,255,200,0.15)_0%,transparent_70%)]" />
-
-      {/* ... ASCII + overlays ... */}
 
       <div className="relative z-10 w-full">
         <h2
           className="text-3xl sm:text-4xl font-bold mb-6 border-b border-teal-400 pb-2 text-center
-  text-teal-300 drop-shadow-[0_0_6px_rgba(45,255,255,0.7)] animate-[flicker_3s_infinite] hover:border-red-400 hover:drop-shadow-[0_0_8px_rgba(255,100,100,0.8)] transition-all duration-300"
+          text-teal-300 drop-shadow-[0_0_6px_rgba(45,255,255,0.7)] animate-[flicker_3s_infinite] hover:border-red-400 hover:drop-shadow-[0_0_8px_rgba(255,100,100,0.8)] transition-all duration-300 border-dashed"
         >
           About Me
         </h2>
@@ -165,25 +166,33 @@ Let’s build something awesome together 🌐`;
             <DecryptedAscii asciiArt={asciiArt} isInView={isInView} />
           </div>
 
-          {/* Typed text */}
-
-          <div className="w-full md:w-2/3 ">
-            <ScrambledText
-              className="scrambled-text-demo sm:text-lg text-left whitespace-pre-wrap text-teal-200 drop-shadow-[0_0_4px_rgba(0,255,255,0.4)] hover:text-red-200 "
-              radius={100}
-              duration={1.2}
-              speed={0.5}
-              scrambleChars={".:"}
-            >
-              {typedText}
-              {isInView && index <= fullText.length && (
-                <span className="text-teal-400 animate-pulse"> |</span>
-              )}
-            </ScrambledText>
+          {/* Text */}
+          <div className="w-full md:w-2/3">
+            {!isTypingDone ? (
+              // Typing animation
+              <p className="sm:text-lg text-left whitespace-pre-wrap text-teal-200 drop-shadow-[0_0_4px_rgba(0,255,255,0.4)]">
+                {typedText}
+                {isInView && index <= fullText.length && (
+                  <span className="text-teal-400 animate-pulse"> |</span>
+                )}
+              </p>
+            ) : (
+              // After typing done, show scrambled effect
+              <ScrambledText
+                className="sm:text-lg text-left whitespace-pre-wrap text-teal-200 drop-shadow-[0_0_4px_rgba(0,255,255,0.4)] hover:text-red-200"
+                radius={100}
+                duration={1.2}
+                speed={0.5}
+                scrambleChars=".:" // Optional tweak
+              >
+                {fullText}
+              </ScrambledText>
+            )}
           </div>
         </div>
       </div>
     </section>
   );
 };
+
 export default About;

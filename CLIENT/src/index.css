@@ -70,4 +70,33 @@ body, * {
 }
 .crt-flicker {
   animation: crtFlicker 2s infinite ease-in-out;
+}  
+
+
+/* Define a custom property to hold the gradient angle */
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spin-uniform {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* A smooth uniform border spin utility */
+@layer utilities {
+  .border-animate-smooth {
+    background: conic-gradient(
+      from var(--angle),
+      #00f5ff 0deg,
+      #ff00c8 120deg,
+      #00f5ff 240deg
+      /* #ff00c8 360deg */
+    );
+    animation: spin-uniform 3s linear infinite; /* linear ensures uniform motion */
+    @apply relative overflow-hidden rounded-xl p-[2px];
+  }
 }
