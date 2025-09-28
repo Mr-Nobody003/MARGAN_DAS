@@ -17,6 +17,8 @@
     "@splinetool/runtime": "^1.10.48",
     "@tailwindcss/vite": "^4.1.11",
     "framer-motion": "^12.23.9",
+    "gsap": "^3.13.0",
+    "motion": "^12.23.22",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-spinners": "^0.17.0",
