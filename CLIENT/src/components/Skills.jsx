@@ -5,7 +5,8 @@ const Skills = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
-  const skills = ["React", "Tailwind", "Node.js", "C++", "MongoDB", "MySQL"];
+  // const skills = ["React", "Tailwind", "Node.js", "C++", "MongoDB", "MySQL"];
+  const skills = ["ya really need to know my skills?"];
   const [typedSkills, setTypedSkills] = useState(Array(skills.length).fill(''));
 
   useEffect(() => {

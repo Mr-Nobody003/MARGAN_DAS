@@ -92,7 +92,7 @@ body, * {
     background: conic-gradient(
       from var(--angle),
       #00f5ff 0deg,
-      #ff00c8 120deg,
+      #021b18 120deg,
       #00f5ff 240deg
       /* #ff00c8 360deg */
     );

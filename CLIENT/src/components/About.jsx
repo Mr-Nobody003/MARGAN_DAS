@@ -179,7 +179,7 @@ Let’s build something awesome together 🌐`;
             ) : (
               // After typing done, show scrambled effect
               <ScrambledText
-                className="sm:text-lg text-left whitespace-pre-wrap text-teal-200 drop-shadow-[0_0_4px_rgba(0,255,255,0.4)] hover:text-red-200"
+                className="sm:text-lg text-left whitespace-pre-wrap text-teal-200 drop-shadow-[0_0_4px_rgba(0,255,255,0.4)] hover:text-teal-100"
                 radius={100}
                 duration={1.2}
                 speed={0.5}
