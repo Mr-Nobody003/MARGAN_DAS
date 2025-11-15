@@ -1,0 +1,16 @@
+{
+  "version": "0.0.0",
+  "configurations": [
+    {
+      "name": "Crow Server",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/CrowServer.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "console": "externalTerminal"
+    }
+  ]
+}

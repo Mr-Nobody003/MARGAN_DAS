@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "tasks": [
+    {
+      "label": "Build & Run Crow Server",
+      "type": "shell",
+      "command": "cmake --build build && build\\CrowServer.exe",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

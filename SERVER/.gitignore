@@ -57,7 +57,7 @@ Makefile
 .idea/
 *.swp
 *~.nib
-.vscode/*
+# .vscode/*
 
 # If you want to keep .vscode/settings.json committed, unignore it:
 !.vscode/settings.json
