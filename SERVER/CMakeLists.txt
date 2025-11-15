@@ -56,10 +56,12 @@ find_package(Crow CONFIG REQUIRED)
 find_package(asio CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
 
 target_link_libraries(CrowServer PRIVATE
   Crow::Crow
   asio::asio
   fmt::fmt
   spdlog::spdlog
+  unofficial::sqlite3::sqlite3
 )
