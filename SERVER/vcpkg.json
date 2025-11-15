@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "dependencies": [
     "crow",
+    "sqlite3",
     "nlohmann-json",
-    "openssl",
-    "redis-plus-plus"
+    "spdlog",
+    "jwt-cpp"
   ]
 }

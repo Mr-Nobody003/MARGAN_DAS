@@ -1,3 +1,98 @@
-vcpkg
-vcpkg_installed
+# vcpkg artifacts
+vcpkg/
+vcpkg_installed/
+
+# build output
+/build/
+/bin/
+/lib/
+/out/
+
+# CMake intermediate files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+Testing/
+Makefile
+*.cmake
+*.ninja
+
+# Visual Studio / MSBuild
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj.*
+*.vcxproj.*.user
+*.csproj.user
+
+# MSVC binary/object files
+*.obj
+*.o
+*.lib
+*.a
+*.exp
+*.pdb
+*.idb
+*.ipdb
+*.ilk
+
+# Executables and dynamic libraries
+*.exe
+*.dll
+*.so
+*.dylib
+*.app
+
+# Logs and temporary files
 *.log
+*.tmp
+*.temp
+
+# IDEs and editors
+.idea/
+*.swp
+*~.nib
+.vscode/*
+
+# If you want to keep .vscode/settings.json committed, unignore it:
+!.vscode/settings.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python virtualenvs
+venv/
+.env/
+.env.*
+
+# Package managers / other
+packages/
+node_modules/
+dist/
+buildtrees/
+
+# Optional: Ignore local test databases or secrets
+*.db
+*.sqlite
+.env.local
+
+# Optional: Ignore coverage reports
+coverage/
+
+# Optional: Ignore generated documentation
+docs/
+docs/_build/
+doc/build/
+# Optional: Ignore compiled files
+*.pyc
+__pycache__/
+*.class
+*.jar
+fmt.dil
+spdlog.dil
