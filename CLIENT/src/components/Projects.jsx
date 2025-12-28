@@ -1,18 +1,42 @@
-import { useEffect, useState, useRef } from 'react';
-import { useInView } from 'framer-motion';
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "framer-motion";
 
 const Projects = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const projects = [
-    { title: 'Portfolio Website', desc: 'A retro-themed site to showcase my work and skills using React, Tailwind, and Framer Motion.' },
-    { title: 'Elective Selector GUI', desc: 'Desktop app for slotting students electives based on capacity of the subject and in fcfs manner' },
-    { title: 'Northeast Handicrafts Store', desc: 'E-commerce site promoting traditional arts with artisan profiles, built with MERN stack.' },
+    {
+      title: "Game UI",
+      desc: "GUI replica of the game Valorant with Tailwind-made custom icons, Single-page rendering for speed and also published as a progressive web app.",
+    },
+    {
+      title: "Elective Selector GUI",
+      desc: "Desktop app for slotting students electives based on capacity of the subject and in fcfs manner.",
+    },
+    {
+      title: "Northeast Handicrafts Store",
+      desc: "E-commerce site promoting traditional arts with artisan profiles, built with MERN stack.",
+    },
+    {
+      title: "CHAT-APP",
+      desc: "Developed a Real-time web-chat Application for organizational use, Operates locally with LAN connectivity and local DB. ",
+    },
+    {
+      title:"Bézier-Curve",
+      desc:"Interactive Bézier Curve with Physics & Sensor Control An interactive cubic Bézier curve that behaves like a physical rope instead of a static vector path Control points respond with spring dynamics, damping, and inertia, producing smooth, organic motion"
+    },
+    {
+      title:"Optical Character Recognition Model",
+      desc:"Developed an OCR model using Machine Learning (Neural Network) for the Chakma script.Engineered an end-to-end training pipeline using Python, Tesseract and OpenCV to iteratively fine-tune the model, achieving final accuracy of 90.3%. "
+    }
+
   ];
 
-  const [typedTitles, setTypedTitles] = useState(Array(projects.length).fill(''));
-  const [typedDescs, setTypedDescs] = useState(Array(projects.length).fill(''));
+  const [typedTitles, setTypedTitles] = useState(
+    Array(projects.length).fill("")
+  );
+  const [typedDescs, setTypedDescs] = useState(Array(projects.length).fill(""));
 
   useEffect(() => {
     if (isInView) {
@@ -61,7 +85,7 @@ const Projects = () => {
         {projects.map((_, index) => (
           <div
             key={index}
-            className="bg-[#0f0f0f] border border-teal-700 rounded-lg p-6 text-left shadow-md hover:shadow-teal-400/30 transition-all"
+            className="bg-[#0f0f0f] border border-teal-700 rounded-lg p-6 text-left shadow-md hover:shadow-teal-400/30 transition-all hover:border-teal-400"
           >
             <h3 className="text-xl font-bold mb-2 tracking-wide">
               {typedTitles[index]}

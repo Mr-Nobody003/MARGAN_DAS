@@ -122,7 +122,7 @@ With hands-on experience in React.js, C++, MongoDB, and Python, I thrive at the 
 
 Currently pursuing my B.Tech in Computer Science and Engineering at NIT Agartala, I’m constantly exploring new tools, refining my craft, and pushing boundaries in full-stack development, machine learning, and game-inspired UI design.
 
-Let’s build something awesome together 🌐`;
+Let’s build something awesome together`;
 
   // Typing effect
   useEffect(() => {

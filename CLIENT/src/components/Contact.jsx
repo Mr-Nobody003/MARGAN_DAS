@@ -1,36 +1,43 @@
-import { useEffect, useState, useRef } from 'react';
-import { useInView } from 'framer-motion';
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "framer-motion";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const fullText = ` I'm always open to opportunities or collaborations. Let's build something amazing!`;
-  const email = ' your.email@example.com ';
+  const fullText =
+    "I'm always open to opportunities or collaborations. Let's build something amazing!";
+  const email = "margandas03@gmail.com";
 
-  const [typedText, setTypedText] = useState('');
-  const [typedEmail, setTypedEmail] = useState('');
+  const [typedText, setTypedText] = useState("");
+  const [typedEmail, setTypedEmail] = useState("");
 
   useEffect(() => {
-    if (isInView) {
-      let i = 0;
-      const introInterval = setInterval(() => {
-        setTypedText((prev) => prev + fullText[i]);
-        i++;
-        if (i === fullText.length) clearInterval(introInterval);
-      }, 20);
+    if (!isInView) return;
 
-      const emailDelay = fullText.length * 20 + 300;
+    let textIndex = 0;
+    let emailIndex = 0;
 
-      setTimeout(() => {
-        let j = 0;
-        const emailInterval = setInterval(() => {
-          setTypedEmail((prev) => prev + email[j]);
-          j++;
-          if (j === email.length) clearInterval(emailInterval);
-        }, 40);
-      }, emailDelay);
-    }
+    const textInterval = setInterval(() => {
+      setTypedText(fullText.slice(0, textIndex + 1));
+      textIndex++;
+      if (textIndex === fullText.length) clearInterval(textInterval);
+    }, 20);
+
+    const emailDelay = fullText.length * 20 + 300;
+
+    const emailTimeout = setTimeout(() => {
+      const emailInterval = setInterval(() => {
+        setTypedEmail(email.slice(0, emailIndex + 1));
+        emailIndex++;
+        if (emailIndex === email.length) clearInterval(emailInterval);
+      }, 40);
+    }, emailDelay);
+
+    return () => {
+      clearInterval(textInterval);
+      clearTimeout(emailTimeout);
+    };
   }, [isInView]);
 
   return (
