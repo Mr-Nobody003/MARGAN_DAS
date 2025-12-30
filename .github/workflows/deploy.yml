@@ -21,6 +21,7 @@ jobs:
       - name: 📁 Install deps and build
         working-directory: ./CLIENT
         run: |
+          export GITHUB_PAGES=true
           npm install
           npm run build
 
