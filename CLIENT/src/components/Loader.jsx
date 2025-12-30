@@ -53,7 +53,7 @@ const Loader = ({ onComplete }) => {
     if (phase === "splash") {
       const splashDuration = 2000; // ms
       const timeout = setTimeout(() => {
-        // ✅ Wait until robot is ready before going to main content
+        //  Wait until robot is ready before going to main content
         if (robotLoaded) onComplete();
         else {
           // Poll until robot finishes loading
@@ -107,7 +107,7 @@ const Loader = ({ onComplete }) => {
 
       {phase === "splash" && <SplashScreen doodles={doodles} />}
 
-      {/* 🔥 Hidden Preloader for Robot */}
+      {/* Hidden Preloader for Robot */}
       <div className="hidden">
         <Spline scene="./robot.splinecode" onLoad={() => setRobotLoaded(true)} />
       </div>

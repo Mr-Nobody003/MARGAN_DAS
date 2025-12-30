@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 const CustomCursor = () => {
   const cursorRef = useRef(null);
+  const [hasMoved, setHasMoved] = useState(false);
   const [visible, setVisible] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
 
@@ -10,6 +11,11 @@ const CustomCursor = () => {
 
     const handleMouseMove = (e) => {
       const { clientX: x, clientY: y } = e;
+
+      if (!hasMoved) {
+        setHasMoved(true);
+        setVisible(true);
+      }
 
       // Use requestAnimationFrame to avoid React re-render on every pixel
       rafId = requestAnimationFrame(() => {
@@ -44,17 +50,18 @@ const CustomCursor = () => {
     const handleMouseLeave = () => setVisible(false);
     const handleMouseEnter = () => setVisible(true);
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
       cancelAnimationFrame(rafId);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, []);
+  }, [hasMoved]);
+  if (!hasMoved) return null;
 
   return (
     <div
@@ -62,8 +69,8 @@ const CustomCursor = () => {
       className="fixed pointer-events-none z-[51]"
       style={{
         opacity: visible ? 1 : 0,
-        transition: 'opacity 0.2s ease-out',
-        willChange: 'transform',
+        transition: "opacity 0.2s ease-out",
+        willChange: "transform",
       }}
     >
       {/* Glow Effect */}
@@ -72,12 +79,12 @@ const CustomCursor = () => {
         style={{
           transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`,
           background:
-            'radial-gradient(circle, rgba(45, 212, 191, 0.4) 0%, rgba(45, 212, 191, 0.2) 40%, transparent 70%)',
-          filter: 'blur(8px)',
+            "radial-gradient(circle, rgba(45, 212, 191, 0.4) 0%, rgba(45, 212, 191, 0.2) 40%, transparent 70%)",
+          filter: "blur(8px)",
           opacity: isHovering ? 1 : 0.6,
-          animation: isHovering ? 'none' : 'pulse 2s ease-in-out infinite',
-          left: '12px',
-          top: '12px',
+          animation: isHovering ? "none" : "pulse 2s ease-in-out infinite",
+          left: "12px",
+          top: "12px",
         }}
       />
 
@@ -91,7 +98,13 @@ const CustomCursor = () => {
         style={{ transform: `scale(${isHovering ? 1.1 : 1})` }}
       >
         <defs>
-          <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient
+            id="animatedGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
             <stop offset="0%" stopColor="#2dd4bf">
               <animate
                 attributeName="stop-color"
@@ -110,7 +123,10 @@ const CustomCursor = () => {
             </stop>
           </linearGradient>
         </defs>
-        <path fill="url(#animatedGradient)" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z" />
+        <path
+          fill="url(#animatedGradient)"
+          d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"
+        />
       </svg>
     </div>
   );
