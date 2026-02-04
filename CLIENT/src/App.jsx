@@ -3,6 +3,7 @@ import Loader from "./components/Loader";
 import MainContent from "./components/MainContent";
 import CustomCursor from "./components/CustomCursor";
 import { AnimatePresence, motion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   const [showMain, setShowMain] = useState(false);
@@ -25,6 +26,7 @@ const App = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Analytics />
     </div>
   );
 };
